@@ -9,6 +9,7 @@ const urlThree = 'https://api.opensea.io/api/v1/events?asset_contract_address=0x
 const options = {method: 'GET'};
 
 var uniqueCollectors = 0;
+var totalCollectives = 0;
 
 // function fetchData(urlFetch) {
 //   fetch(urlFetch, options)
@@ -106,13 +107,29 @@ function syncFetch(urlFetch, message) {
 
       // If collector has a username and if it is in our map
       if(singleEvent.to_account.user != null && collectors.has(singleEvent.to_account.user.username)) {
-        collectors.set(singleEvent.to_account.user.username, collectors.get(singleEvent.to_account.user.username)+parseInt(singleEvent.quantity, 10));
+        
+        // TEST
+        if(singleEvent.to_account.user.username != null) {
+          collectors.set(singleEvent.to_account.user.username, collectors.get(singleEvent.to_account.user.username)+parseInt(singleEvent.quantity, 10));
+        } else {
+          collectors.set(singleEvent.to_account.address, collectors.get(singleEvent.to_account.address)+parseInt(singleEvent.quantity, 10));
+        }
 
         // Subtraction
         if(singleEvent.from_account.user != null && collectors.has(singleEvent.from_account.user.username)) {
-          collectors.set(singleEvent.from_account.user.username, collectors.get(singleEvent.from_account.user.username)-parseInt(singleEvent.quantity, 10));
+          // TEST2
+          if(singleEvent.from_account.user.username != null) {
+            collectors.set(singleEvent.from_account.user.username, collectors.get(singleEvent.from_account.user.username)-parseInt(singleEvent.quantity, 10));
+          } else {
+            collectors.set(singleEvent.from_account.address, collectors.get(singleEvent.from_account.address)-parseInt(singleEvent.quantity, 10));
+          }
         } else if(singleEvent.from_account.user != null && !collectors.has(singleEvent.from_account.user.username)) {
-          collectors.set(singleEvent.from_account.user.username, -parseInt(singleEvent.quantity, 10));
+          // TEST3
+          if(singleEvent.from_account.user.username != null) {
+            collectors.set(singleEvent.from_account.user.username, -parseInt(singleEvent.quantity, 10));
+          } else {
+            collectors.set(singleEvent.from_account.address, -parseInt(singleEvent.quantity, 10));
+          }
         } else if(collectors.has(singleEvent.from_account.address)) {
           collectors.set(singleEvent.from_account.address, collectors.get(singleEvent.from_account.address)-parseInt(singleEvent.quantity, 10));
         } else {
@@ -121,13 +138,29 @@ function syncFetch(urlFetch, message) {
 
       } // If collector has a username but not in our map
       else if(singleEvent.to_account.user != null && !collectors.has(singleEvent.to_account.user.username)) {
-        collectors.set(singleEvent.to_account.user.username, parseInt(singleEvent.quantity, 10));
+
+        // TEST
+        if(singleEvent.to_account.user.username != null) {
+          collectors.set(singleEvent.to_account.user.username, parseInt(singleEvent.quantity, 10));
+        } else {
+          collectors.set(singleEvent.to_account.address, parseInt(singleEvent.quantity, 10));
+        }
 
         // Subtraction
         if(singleEvent.from_account.user != null && collectors.has(singleEvent.from_account.user.username)) {
-          collectors.set(singleEvent.from_account.user.username, collectors.get(singleEvent.from_account.user.username)-parseInt(singleEvent.quantity, 10));
+          // TEST2
+          if(singleEvent.from_account.user.username != null) {
+            collectors.set(singleEvent.from_account.user.username, collectors.get(singleEvent.from_account.user.username)-parseInt(singleEvent.quantity, 10));
+          } else {
+            collectors.set(singleEvent.from_account.address, collectors.get(singleEvent.from_account.address)-parseInt(singleEvent.quantity, 10));
+          }
         } else if(singleEvent.from_account.user != null && !collectors.has(singleEvent.from_account.user.username)) {
-          collectors.set(singleEvent.from_account.user.username, -parseInt(singleEvent.quantity, 10));
+          // TEST3
+          if(singleEvent.from_account.user.username != null) {
+            collectors.set(singleEvent.from_account.user.username, -parseInt(singleEvent.quantity, 10));
+          } else {
+            collectors.set(singleEvent.from_account.address, -parseInt(singleEvent.quantity, 10));
+          }
         } else if(collectors.has(singleEvent.from_account.address)) {
           collectors.set(singleEvent.from_account.address, collectors.get(singleEvent.from_account.address)-parseInt(singleEvent.quantity, 10));
         } else {
@@ -140,9 +173,19 @@ function syncFetch(urlFetch, message) {
 
         // Subtraction
         if(singleEvent.from_account.user != null && collectors.has(singleEvent.from_account.user.username)) {
-          collectors.set(singleEvent.from_account.user.username, collectors.get(singleEvent.from_account.user.username)-parseInt(singleEvent.quantity, 10));
+          // TEST2
+          if(singleEvent.from_account.user.username != null) {
+            collectors.set(singleEvent.from_account.user.username, collectors.get(singleEvent.from_account.user.username)-parseInt(singleEvent.quantity, 10));
+          } else {
+            collectors.set(singleEvent.from_account.address, collectors.get(singleEvent.from_account.address)-parseInt(singleEvent.quantity, 10));
+          }
         } else if(singleEvent.from_account.user != null && !collectors.has(singleEvent.from_account.user.username)) {
-          collectors.set(singleEvent.from_account.user.username, -parseInt(singleEvent.quantity, 10));
+          // TEST3
+          if(singleEvent.from_account.user.username != null) {
+            collectors.set(singleEvent.from_account.user.username, -parseInt(singleEvent.quantity, 10));
+          } else {
+            collectors.set(singleEvent.from_account.address, -parseInt(singleEvent.quantity, 10));
+          }
         } else if(collectors.has(singleEvent.from_account.address)) {
           collectors.set(singleEvent.from_account.address, collectors.get(singleEvent.from_account.address)-parseInt(singleEvent.quantity, 10));
         } else {
@@ -155,9 +198,19 @@ function syncFetch(urlFetch, message) {
 
         // Subtraction
         if(singleEvent.from_account.user != null && collectors.has(singleEvent.from_account.user.username)) {
-          collectors.set(singleEvent.from_account.user.username, collectors.get(singleEvent.from_account.user.username)-parseInt(singleEvent.quantity, 10));
+          // TEST2
+          if(singleEvent.from_account.user.username != null) {
+            collectors.set(singleEvent.from_account.user.username, collectors.get(singleEvent.from_account.user.username)-parseInt(singleEvent.quantity, 10));
+          } else {
+            collectors.set(singleEvent.from_account.address, collectors.get(singleEvent.from_account.address)-parseInt(singleEvent.quantity, 10));
+          }
         } else if(singleEvent.from_account.user != null && !collectors.has(singleEvent.from_account.user.username)) {
-          collectors.set(singleEvent.from_account.user.username, -parseInt(singleEvent.quantity, 10));
+          // TEST3
+          if(singleEvent.from_account.user.username != null) {
+            collectors.set(singleEvent.from_account.user.username, -parseInt(singleEvent.quantity, 10));
+          } else {
+            collectors.set(singleEvent.from_account.address, -parseInt(singleEvent.quantity, 10));
+          }
         } else if(collectors.has(singleEvent.from_account.address)) {
           collectors.set(singleEvent.from_account.address, collectors.get(singleEvent.from_account.address)-parseInt(singleEvent.quantity, 10));
         } else {
@@ -176,21 +229,10 @@ syncFetch(urlOne, 'fetch one');
 syncFetch(urlTwo, 'fetch two');
 syncFetch(urlThree, 'fetch three');
 
-  for (let [key, value] of collectors) {
-    if(value > 0) {
-      console.log(key + '  =>  ' + value);
-    }
+for (let [key, value] of collectors) {
+  if(value > 0) {
+    console.log(key + '  =>  ' + value);
+    totalCollectives += value;
   }
-
-// if(urlNum == 2) {
-//   console.log(collectors);
-//   for (let [key, value] of collectors) {
-//     if(value > 0) {
-//       uniqueCollectors++;
-//     } else {
-//       collectors.delete(key);
-//     }
-//   }
-//   console.log(uniqueCollectors);
-// }
-// urlNum++;
+}
+console.log(totalCollectives);
