@@ -5,7 +5,7 @@ let collectors = new Map();
 
 const urlOne = 'https://api.opensea.io/api/v1/events?asset_contract_address=0xd07dc4262BCDbf85190C01c996b4C06a461d2430&token_id=470463&event_type=transfer&only_opensea=false&offset=0&limit=10000';
 const urlTwo = 'https://api.opensea.io/api/v1/events?asset_contract_address=0xd07dc4262BCDbf85190C01c996b4C06a461d2430&token_id=470280&event_type=transfer&only_opensea=false&offset=0&limit=10000';
-const urlThree = 'https://api.opensea.io/api/v1/events?asset_contract_address=0xd07dc4262bcdbf85190c01c996b4c06a461d2430&token_id=470708&event_type=transfer&only_opensea=false&offset=0&limit=1000';
+const urlThree = 'https://api.opensea.io/api/v1/events?asset_contract_address=0xd07dc4262bcdbf85190c01c996b4c06a461d2430&token_id=470708&event_type=transfer&only_opensea=false&offset=0&limit=10000';
 const options = {method: 'GET'};
 
 var uniqueCollectors = 0;
@@ -39,6 +39,12 @@ function fetchData(urlFetch) {
       });
       if(urlNum == 2) {
         console.log(collectors);
+        for (let value of collectors.values()){
+          if(value > 0) {
+            uniqueCollectors++;
+          }
+        }
+        console.log(uniqueCollectors);
       }
       urlNum++;
     })
