@@ -107,35 +107,12 @@ function syncFetch(urlFetch, message) {
 
       // If collector has a username and if it is in our map
       if(singleEvent.to_account.user != null && collectors.has(singleEvent.to_account.user.username)) {
-        
         // TEST
         if(singleEvent.to_account.user.username != null) {
           collectors.set(singleEvent.to_account.user.username, collectors.get(singleEvent.to_account.user.username)+parseInt(singleEvent.quantity, 10));
         } else {
           collectors.set(singleEvent.to_account.address, collectors.get(singleEvent.to_account.address)+parseInt(singleEvent.quantity, 10));
         }
-
-        // Subtraction
-        if(singleEvent.from_account.user != null && collectors.has(singleEvent.from_account.user.username)) {
-          // TEST2
-          if(singleEvent.from_account.user.username != null) {
-            collectors.set(singleEvent.from_account.user.username, collectors.get(singleEvent.from_account.user.username)-parseInt(singleEvent.quantity, 10));
-          } else {
-            collectors.set(singleEvent.from_account.address, collectors.get(singleEvent.from_account.address)-parseInt(singleEvent.quantity, 10));
-          }
-        } else if(singleEvent.from_account.user != null && !collectors.has(singleEvent.from_account.user.username)) {
-          // TEST3
-          if(singleEvent.from_account.user.username != null) {
-            collectors.set(singleEvent.from_account.user.username, -parseInt(singleEvent.quantity, 10));
-          } else {
-            collectors.set(singleEvent.from_account.address, -parseInt(singleEvent.quantity, 10));
-          }
-        } else if(collectors.has(singleEvent.from_account.address)) {
-          collectors.set(singleEvent.from_account.address, collectors.get(singleEvent.from_account.address)-parseInt(singleEvent.quantity, 10));
-        } else {
-          collectors.set(singleEvent.from_account.address, -parseInt(singleEvent.quantity, 10));
-        }
-
       } // If collector has a username but not in our map
       else if(singleEvent.to_account.user != null && !collectors.has(singleEvent.to_account.user.username)) {
 
@@ -145,79 +122,34 @@ function syncFetch(urlFetch, message) {
         } else {
           collectors.set(singleEvent.to_account.address, parseInt(singleEvent.quantity, 10));
         }
-
-        // Subtraction
-        if(singleEvent.from_account.user != null && collectors.has(singleEvent.from_account.user.username)) {
-          // TEST2
-          if(singleEvent.from_account.user.username != null) {
-            collectors.set(singleEvent.from_account.user.username, collectors.get(singleEvent.from_account.user.username)-parseInt(singleEvent.quantity, 10));
-          } else {
-            collectors.set(singleEvent.from_account.address, collectors.get(singleEvent.from_account.address)-parseInt(singleEvent.quantity, 10));
-          }
-        } else if(singleEvent.from_account.user != null && !collectors.has(singleEvent.from_account.user.username)) {
-          // TEST3
-          if(singleEvent.from_account.user.username != null) {
-            collectors.set(singleEvent.from_account.user.username, -parseInt(singleEvent.quantity, 10));
-          } else {
-            collectors.set(singleEvent.from_account.address, -parseInt(singleEvent.quantity, 10));
-          }
-        } else if(collectors.has(singleEvent.from_account.address)) {
-          collectors.set(singleEvent.from_account.address, collectors.get(singleEvent.from_account.address)-parseInt(singleEvent.quantity, 10));
-        } else {
-          collectors.set(singleEvent.from_account.address, -parseInt(singleEvent.quantity, 10));
-        }
-
       } // If collector has no username and is in our map
       else if(collectors.has(singleEvent.to_account.address)) {
         collectors.set(singleEvent.to_account.address, collectors.get(singleEvent.to_account.address)+parseInt(singleEvent.quantity, 10));
-
-        // Subtraction
-        if(singleEvent.from_account.user != null && collectors.has(singleEvent.from_account.user.username)) {
-          // TEST2
-          if(singleEvent.from_account.user.username != null) {
-            collectors.set(singleEvent.from_account.user.username, collectors.get(singleEvent.from_account.user.username)-parseInt(singleEvent.quantity, 10));
-          } else {
-            collectors.set(singleEvent.from_account.address, collectors.get(singleEvent.from_account.address)-parseInt(singleEvent.quantity, 10));
-          }
-        } else if(singleEvent.from_account.user != null && !collectors.has(singleEvent.from_account.user.username)) {
-          // TEST3
-          if(singleEvent.from_account.user.username != null) {
-            collectors.set(singleEvent.from_account.user.username, -parseInt(singleEvent.quantity, 10));
-          } else {
-            collectors.set(singleEvent.from_account.address, -parseInt(singleEvent.quantity, 10));
-          }
-        } else if(collectors.has(singleEvent.from_account.address)) {
-          collectors.set(singleEvent.from_account.address, collectors.get(singleEvent.from_account.address)-parseInt(singleEvent.quantity, 10));
-        } else {
-          collectors.set(singleEvent.from_account.address, -parseInt(singleEvent.quantity, 10));
-        }
-
       } // If collector has no username and is not in our map
       else {
         collectors.set(singleEvent.to_account.address, parseInt(singleEvent.quantity, 10));
+      } 
 
-        // Subtraction
-        if(singleEvent.from_account.user != null && collectors.has(singleEvent.from_account.user.username)) {
-          // TEST2
-          if(singleEvent.from_account.user.username != null) {
-            collectors.set(singleEvent.from_account.user.username, collectors.get(singleEvent.from_account.user.username)-parseInt(singleEvent.quantity, 10));
-          } else {
-            collectors.set(singleEvent.from_account.address, collectors.get(singleEvent.from_account.address)-parseInt(singleEvent.quantity, 10));
-          }
-        } else if(singleEvent.from_account.user != null && !collectors.has(singleEvent.from_account.user.username)) {
-          // TEST3
-          if(singleEvent.from_account.user.username != null) {
-            collectors.set(singleEvent.from_account.user.username, -parseInt(singleEvent.quantity, 10));
-          } else {
-            collectors.set(singleEvent.from_account.address, -parseInt(singleEvent.quantity, 10));
-          }
-        } else if(collectors.has(singleEvent.from_account.address)) {
-          collectors.set(singleEvent.from_account.address, collectors.get(singleEvent.from_account.address)-parseInt(singleEvent.quantity, 10));
-        } else {
-          collectors.set(singleEvent.from_account.address, -parseInt(singleEvent.quantity, 10));
-        }
-
+    // Subtraction
+    if(singleEvent.from_account.user != null && collectors.has(singleEvent.from_account.user.username)) {
+      // TEST2
+      if(singleEvent.from_account.user.username != null) {
+        collectors.set(singleEvent.from_account.user.username, collectors.get(singleEvent.from_account.user.username)-parseInt(singleEvent.quantity, 10));
+      } else {
+        collectors.set(singleEvent.from_account.address, collectors.get(singleEvent.from_account.address)-parseInt(singleEvent.quantity, 10));
       }
+    } else if(singleEvent.from_account.user != null && !collectors.has(singleEvent.from_account.user.username)) {
+      // TEST3
+      if(singleEvent.from_account.user.username != null) {
+        collectors.set(singleEvent.from_account.user.username, -parseInt(singleEvent.quantity, 10));
+      } else {
+        collectors.set(singleEvent.from_account.address, -parseInt(singleEvent.quantity, 10));
+      }
+    } else if(collectors.has(singleEvent.from_account.address)) {
+      collectors.set(singleEvent.from_account.address, collectors.get(singleEvent.from_account.address)-parseInt(singleEvent.quantity, 10));
+    } else {
+      collectors.set(singleEvent.from_account.address, -parseInt(singleEvent.quantity, 10));
+    }
   });
 }
 
